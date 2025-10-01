@@ -43,7 +43,6 @@ A escolha da instância correta é vital para a eficiência e o custo. As famíl
 
 <img width="960" height="540" alt="Tipos EC2" src="https://github.com/user-attachments/assets/229e56ec-d9a8-48b2-8fa4-70e74cf6bc91" />
 
-
 #### Otimização e Escalabilidade
 
 * **Otimização de Custos:**
@@ -78,27 +77,34 @@ A AWS oferece serviços de armazenamento para diferentes necessidades de perform
     * **S3 Intelligent-Tiering:** Move dados entre as classes de forma automática para otimizar custos.
     * **S3 Glacier:** Para arquivamento de longo prazo, com custo muito baixo e tempo de recuperação mais longo.
 
-
 <img width="881" height="735" alt="image" src="https://github.com/user-attachments/assets/ed6b9153-7ea7-4b21-916a-b11ecea5e01d" />
-
-
-<img width="987" height="505" alt="image" src="https://github.com/user-attachments/assets/c3132ea4-e701-4ac9-ab5c-578cba7d19da" />
 
 
 * **Regras de Ciclo de Vida:** Permite automatizar a transição de objetos entre as classes, otimizando os custos de armazenamento ao longo do tempo.
 
+
+<img width="987" height="505" alt="image" src="https://github.com/user-attachments/assets/c3132ea4-e701-4ac9-ab5c-578cba7d19da" />
+
 ---
 
 ### 📝 Explicações de alguns termos: 
--**ARM** é uma arquitetura de processadores conhecida pela alta eficiência energética, dominando dispositivos móveis e ganhando espaço em PCs e servidores.
--**Silício** personalizado é um chip de computador otimizado e desenhado sob medida para uma função ou dispositivo específico, como os processadores da Apple para seus produtos.
--**RAM** é a memória temporária de um computador que armazena dados e programas em uso para acesso rápido pelo processador.
--**SAP** é uma empresa global de software de gestão empresarial, famosa por seus sistemas ERP que integram processos de negócios em grandes organizações.
--**Apache Spark** é uma plataforma de código aberto para processamento rápido de dados em larga escala, ideal para Big Data e Machine Learning.
--**Machine Learning** é um campo da inteligência artificial que capacita sistemas a aprenderem e melhorarem com dados, identificando padrões para tomar decisões ou fazer previsões sem programação explícita.
--**Clusters** são grupos de computadores ou servidores que trabalham juntos como um único sistema para aumentar desempenho, escalabilidade e confiabilidade.
--**IOPS** mede o número de operações de leitura e escrita que um dispositivo de armazenamento pode realizar por segundo, indicando sua velocidade em lidar com pequenas transferências de dados.
--**Data Warehousing**, ou Armazenamento de Dados, é o processo de coletar e consolidar grandes volumes de dados de múltiplas fontes em um único repositório central, otimizado para análise e geração de relatórios, não para operações transacionais diárias.
+* **ARM** é uma arquitetura de processadores conhecida pela alta eficiência energética, dominando dispositivos móveis e ganhando espaço em PCs e servidores.
+
+* **Silício** personalizado é um chip de computador otimizado e desenhado sob medida para uma função ou dispositivo específico, como os processadores da Apple para seus produtos.
+
+* **RAM** é a memória temporária de um computador que armazena dados e programas em uso para acesso rápido pelo processador.
+
+* **SAP** é uma empresa global de software de gestão empresarial, famosa por seus sistemas ERP que integram processos de negócios em grandes organizações.
+
+* **Apache Spark** é uma plataforma de código aberto para processamento rápido de dados em larga escala, ideal para Big Data e Machine Learning.
+
+* **Machine Learning** é um campo da inteligência artificial que capacita sistemas a aprenderem e melhorarem com dados, identificando padrões para tomar decisões ou fazer previsões sem programação explícita.
+
+* **Clusters** são grupos de computadores ou servidores que trabalham juntos como um único sistema para aumentar desempenho, escalabilidade e confiabilidade.
+
+* **IOPS** mede o número de operações de leitura e escrita que um dispositivo de armazenamento pode realizar por segundo, indicando sua velocidade em lidar com pequenas transferências de dados.
+
+* **Data Warehousing**, ou Armazenamento de Dados, é o processo de coletar e consolidar grandes volumes de dados de múltiplas fontes em um único repositório central, otimizado para análise e geração de relatórios, não para operações transacionais diárias.
 
 ---
 
