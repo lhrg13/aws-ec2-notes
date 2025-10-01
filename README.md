@@ -77,10 +77,10 @@ A AWS oferece serviços de armazenamento para diferentes necessidades de perform
     * **S3 Intelligent-Tiering:** Move dados entre as classes de forma automática para otimizar custos.
     * **S3 Glacier:** Para arquivamento de longo prazo, com custo muito baixo e tempo de recuperação mais longo.
 
-<img width="881" height="735" alt="image" src="https://github.com/user-attachments/assets/ed6b9153-7ea7-4b21-916a-b11ecea5e01d" />
-
-
 * **Regras de Ciclo de Vida:** Permite automatizar a transição de objetos entre as classes, otimizando os custos de armazenamento ao longo do tempo.
+
+
+<img width="881" height="735" alt="image" src="https://github.com/user-attachments/assets/ed6b9153-7ea7-4b21-916a-b11ecea5e01d" />
 
 
 <img width="987" height="505" alt="image" src="https://github.com/user-attachments/assets/c3132ea4-e701-4ac9-ab5c-578cba7d19da" />
@@ -112,7 +112,9 @@ A AWS oferece serviços de armazenamento para diferentes necessidades de perform
 
 Como parte do desafio, criei um diagrama para visualizar a integração dos serviços AWS. A arquitetura conecta `S3`, `Lambda Function`, `EC2` e `EBS`, demonstrando a interação entre diferentes componentes para formar uma solução completa.
 
-O diagrama foi criado utilizando a ferramenta [draw.io](https://www.draw.io/) (agora diagrams.net).
+O diagrama foi criado utilizando a ferramenta [draw.io](https://www.draw.io/).
+
+<img width="721" height="1075" alt="Diagrama Desafio Instâncias EC2" src="https://github.com/user-attachments/assets/8d11d741-3118-4a44-9b86-43e12a5011f4" />
 
 ---
 
