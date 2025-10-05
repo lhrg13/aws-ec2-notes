@@ -87,24 +87,13 @@ A AWS oferece serviços de armazenamento para diferentes necessidades de perform
 
 ---
 
-### 📝 Explicações de alguns termos: 
-* **ARM** é uma arquitetura de processadores conhecida pela alta eficiência energética, dominando dispositivos móveis e ganhando espaço em PCs e servidores.
+### 📝 Anotações: 
+Fique à vontade para consultar minhas anotações sobre AWS:
+https://docs.google.com/document/d/1-HiQhphNYBntMCZiYJY_EK_WW1CVHV5M1PWULj0lL5o/edit?usp=sharing
 
-* **Silício** personalizado é um chip de computador otimizado e desenhado sob medida para uma função ou dispositivo específico, como os processadores da Apple para seus produtos.
+Fique à vontade para consultar minhas anotações sobre linguagens de programação:
+https://docs.google.com/document/d/1U9DX4HWNCONbbbeXnt2XWKlF2bvth04ItrHQBfjLmZE/edit?usp=sharing
 
-* **RAM** é a memória temporária de um computador que armazena dados e programas em uso para acesso rápido pelo processador.
-
-* **SAP** é uma empresa global de software de gestão empresarial, famosa por seus sistemas ERP que integram processos de negócios em grandes organizações.
-
-* **Apache Spark** é uma plataforma de código aberto para processamento rápido de dados em larga escala, ideal para Big Data e Machine Learning.
-
-* **Machine Learning** é um campo da inteligência artificial que capacita sistemas a aprenderem e melhorarem com dados, identificando padrões para tomar decisões ou fazer previsões sem programação explícita.
-
-* **Clusters** são grupos de computadores ou servidores que trabalham juntos como um único sistema para aumentar desempenho, escalabilidade e confiabilidade.
-
-* **IOPS** mede o número de operações de leitura e escrita que um dispositivo de armazenamento pode realizar por segundo, indicando sua velocidade em lidar com pequenas transferências de dados.
-
-* **Data Warehousing**, ou Armazenamento de Dados, é o processo de coletar e consolidar grandes volumes de dados de múltiplas fontes em um único repositório central, otimizado para análise e geração de relatórios, não para operações transacionais diárias.
 
 ---
 
