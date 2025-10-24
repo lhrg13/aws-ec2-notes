@@ -32,9 +32,8 @@ A **Máquina de Estado** construída simula um fluxo de trabalho de **processame
 * **Workflow Studio:** Ferramenta visual de design de fluxo de trabalho.
 
 ### Diagrama da Máquina de Estado
+<img width="665" height="516" alt="stepfunctions_graph" src="https://github.com/user-attachments/assets/e0c28ec0-93eb-4b9f-8b27-689e9aa8d8c8" />
 
-![Diagrama do Workflow de Validação e Notificação](images/diagrama_step_functions.png)
-*Detalhes:* O diagrama acima ilustra a sequência de estados, incluindo a lógica condicional (`Choice`) e o tratamento de erro (`Catch #1`).
 
 ### Estrutura Principal do Workflow
 
