@@ -1,0 +1,54 @@
+{
+  "Comment": "Workflow que decide o caminho com base no valor de entrada (>= 10 para notificação).",
+  "StartAt": "Valida Dados (Pass)",
+  "States": {
+    
+    "Valida Dados (Pass)": {
+      "Type": "Pass",
+      "Next": "Verifica Valor",
+      "Comment": "Prepara o payload para a decisão."
+    },
+    
+    "Verifica Valor": {
+      "Type": "Choice",
+      "Comment": "Decisão: Se $.valor for >= 10, segue para Invoca Notificacao.",
+      "Choices": [
+        {
+          "Variable": "$.valor",
+          "NumericGreaterThanEquals": 10,
+          "Next": "Invoca Notificacao"
+        }
+      ],
+      "Default": "Processamento Baixo Concluido"
+    },
+    
+    "Invoca Notificacao": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "Payload.$": "$",
+        "FunctionName": "arn:aws:lambda:us-east-1:505461093612:function:NotificaProcessoLambda"
+      },
+      "End": true,
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "Next": "Notificacao Falhou"
+        }
+      ]
+    },
+    
+    "Notificacao Falhou": {
+      "Type": "Fail",
+      "Cause": "A função NotificaProcessoLambda falhou. Verificar CloudWatch Logs.",
+      "Error": "NotificacaoFalhaError"
+    },
+    
+    "Processamento Baixo Concluido": {
+      "Type": "Succeed",
+      "Comment": "Encerra o fluxo para valores baixos"
+    }
+  }
+}
