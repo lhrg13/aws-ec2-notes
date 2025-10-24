@@ -2,11 +2,15 @@
 
 Este repositório é o entregável do desafio de consolidação de **Workflows Automatizados com AWS Step Functions** da Digital Innovation One (DIO). O objetivo principal foi aplicar os conceitos de orquestração de serviços *serverless* para construir um fluxo de trabalho resiliente e escalável na AWS.
 
+### Status do Projeto
+✅ **Concluído e Testado com Sucesso após Depuração**
+
+---
+
 ## 🎯 Objetivos de Aprendizagem e Entrega
 
 Com a conclusão deste desafio, demonstrei a capacidade de:
-
-1.  Aplicar os conceitos de AWS Step Functions em um ambiente prático.
+1.  Aplicar os conceitos do AWS Step Functions em um ambiente prático.
 2.  Documentar processos técnicos de forma clara e estruturada.
 3.  Utilizar o GitHub como ferramenta para compartilhamento de documentação técnica.
 
@@ -14,84 +18,71 @@ Com a conclusão deste desafio, demonstrei a capacidade de:
 
 ## 🛠️ O Workflow Construído
 
-### Cenário de Uso: `<Descreva o cenário do seu State Machine, ex: Processamento Assíncrono de Pedido>`
+### Cenário de Uso: Processamento Condicional de Dados
 
-O *State Machine* construído simula o fluxo de trabalho de `<Explicação breve do fluxo, ex: validação de dados, processamento principal e notificação/tratamento de erro, etc.>`
+A **Máquina de Estado** construída simula um fluxo de trabalho de **processamento condicional**, onde a execução é ramificada com base em um valor de entrada:
+* Se o valor de entrada é **maior ou igual a 10**, ele segue para uma notificação (indicando alto valor).
+* Se o valor é **menor que 10**, ele segue o caminho padrão e encerra com sucesso (baixo valor).
 
 ### ⚙️ Tecnologias Utilizadas
 
 * **AWS Step Functions:** Serviço de orquestração central.
 * **AWS Lambda:** Utilizado como `Task State` para simular as etapas de processamento.
 * **AWS IAM:** Gerenciamento de permissões (Role do Step Functions).
-* **Workflow Studio:** Ferramenta visual de design de workflow.
+* **Workflow Studio:** Ferramenta visual de design de fluxo de trabalho.
 
 ### Diagrama da Máquina de Estado
 
-![Diagrama do Workflow](images/diagrama_step_functions.png)
-*Detalhes:* O diagrama acima ilustra a sequência de estados e a lógica condicional implementada no Step Functions.
+![Diagrama do Workflow de Validação e Notificação](images/diagrama_step_functions.png)
+*Detalhes:* O diagrama acima ilustra a sequência de estados, incluindo a lógica condicional (`Choice`) e o tratamento de erro (`Catch #1`).
 
-### Estrutura Detalhada do Workflow
+### Estrutura Principal do Workflow
 
 | Estado (State) | Tipo | Função | Integração |
 | :--- | :--- | :--- | :--- |
-| **`<Nome do 1º Estado>`** | `Task` | `<Ex: Valida o input de entrada e garante que o payload é válido.>` | Lambda: `<Nome da Lambda de Validação>` |
-| **`<Nome do 2º Estado (Se for Choice)>`** | `Choice` | `<Ex: Verifica se o campo 'status' é 'APROVADO' ou 'PENDENTE'.>` | Lógica Condicional |
-| **`<Caminho A>`** | `Parallel` / `Task` | `<Ex: Se APROVADO, inicia o processamento do pagamento e a preparação do envio em paralelo.>` | Lambda / Outro Serviço |
-| **`<Caminho B>`** | `Fail` / `Succeed` | `<Ex: Se PENDENTE, falha a execução com um erro específico ou notifica o usuário.>` | |
-| **`<Estado Final>`** | `Succeed` | Encerra a execução com sucesso. | |
+| **Valida Dados (Pass)** | `Pass` | Prepara e passa o input para o próximo estado. | N/A |
+| **Verifica Valor** | `Choice` | Verifica a condição `$.valor >= 10`. | Lógica Condicional |
+| **Invoca Notificacao** | `Task` | É o caminho de alto valor. Invoca a função Lambda de notificação. | `Lambda: NotificaProcessoLambda` |
+| **Notificacao Falhou** | `Fail` | É o caminho de erro (`Catch`) acionado se a Lambda falhar. | `Fail State` |
+| **Processamento Baixo Concluido** | `Succeed` | É o caminho `Default` para baixo valor. Encerra a execução com sucesso. | `Succeed State` |
 
 ---
 
-## 💡 Anotações e Insights Adquiridos (Step Functions Aprofundado)
+## 💡 Anotações e Insights Adquiridos (Depuração Avançada)
 
-A prática neste desafio reforçou a compreensão dos conceitos-chave de orquestração de serviços.
+A prática neste desafio reforçou a compreensão dos conceitos-chave, especialmente na resolução de problemas de ambiente e permissão, que são críticos em projetos *serverless*.
 
-### 1. Orquestração vs. Coreografia
+### 1. Orquestração vs. Coreografia (Conceitual)
+* **Insight:** O Step Functions permitiu uma **orquestração** clara, onde a lógica de negócio (o `Choice State`) é visível e centralizada, facilitando a auditoria de cada decisão.
 
-* **Step Functions (Orquestração):** O controle centralizado (o *State Machine*) dita a sequência e o estado de todo o processo. Ideal para fluxos de missão crítica onde a auditoria e a ordem são essenciais.
-* **Coreografia (SNS/SQS):** Os serviços interagem e se comunicam de forma autônoma através de eventos (mensagens). Menos controle, mas mais flexibilidade.
-* **Insight:** O Step Functions permite construir processos **resilientes** e **visuais** de forma que seria complexo e propenso a erros utilizando apenas filas e tópicos.
+### 2. Desafio de Permissão (IAM Role Scoped)
+* **A Falha:** A execução inicial falhava no estado `Invoca Notificacao` devido a um `Access Denied` silencioso.
+* **A Causa:** A Role de Execução do Step Functions (`StepFunctions-ValidaDados-role-...`) possuía uma política de permissão de escopo (`Scoped`) que **não listava o ARN** da `NotificaProcessoLambda`.
+* **A Solução:** Foi necessário **editar o JSON da política de IAM** para incluir o ARN da `NotificaProcessoLambda` na lista de recursos permitidos para a ação `lambda:InvokeFunction`.
 
-### 2. Manipulação de Dados (Input/Output Processing)
+### 3. Desafio Crítico de Runtime (Node.js ESM vs. CommonJS)
+* **A Falha Persistente:** Mesmo após corrigir o IAM, o erro **`ReferenceError: exports is not defined in ES module scope`** persistiu nos logs do CloudWatch.
+* **A Causa:** O código da `NotificaProcessoLambda` estava escrito em sintaxe **CommonJS (CJS)** (`exports.handler`), mas o runtime **Node.js 22.x** estava configurado para esperar o formato **Módulo ES (ESM)**.
+* **A Solução:** O código da Lambda foi alterado para a sintaxe **Módulo ES (ESM)**, usando `export const handler = async (event) => {...}`. Isso resolveu o erro de inicialização do runtime e garantiu o sucesso da execução.
 
-A passagem de dados entre os estados é crucial e foi gerenciada utilizando:
-
-* **`InputPath`:** Garante que apenas a seção relevante do JSON de entrada seja enviada ao estado.
-* **`ResultPath`:** Define como o resultado (`Result`) de uma `Task` (ex: a resposta de uma Lambda) é fundido de volta ao JSON de execução. Utilizei `"ResultPath": "$.processamento_output"` para não sobrescrever os dados originais.
-* **`OutputPath`:** Filtra o JSON final de saída do estado, garantindo um payload limpo para o próximo estado.
-
-### 3. Resiliência e Tratamento de Erros
-
-A robustez do fluxo foi garantida através das seguintes configurações no **`Task State`**:
-
-* **Retries (Tentativas Automáticas):**
-    * Configurado para tentar novamente em caso de erros temporários (`ErrorEquals`: ["Lambda.UnknownError"], `MaxAttempts`: 3, `BackoffRate`: 2).
-    * Isso evita falhas desnecessárias devido a falhas transientes de rede ou sobrecarga.
-* **Catchers (Captura de Erros):**
-    * Em caso de falha persistente após as tentativas, o `Task` transiciona para um `Catch` que redireciona o fluxo para um estado de **Notificação de Erro**, impedindo que toda a execução falhe abruptamente.
-
-### 4. O Uso do `Choice State`
-
-O `Choice State` foi vital para implementar a lógica de negócio **`Se/Senão (If/Else)`**. Ele opera avaliando regras como `NumericGreaterThan`, `StringEquals` ou `IsPresent` sobre os dados de entrada, direcionando a execução para caminhos diferentes do workflow.
+### 4. Resiliência e Tratamento de Erros
+* O bloco `Catch` foi testado com sucesso: ao forçar uma falha na Lambda, o Step Functions capturou o erro (`TaskFailed`) e desviou o fluxo para o `Notificacao Falhou`, provando a robustez do design.
 
 ---
 
 ## 📂 Organização do Repositório
 
-* **`/images`:** Contém as capturas de tela relevantes da AWS Console (Diagrama, Execução Sucedida, Logs).
-* **`/state-machine-definition`:** Contém o arquivo JSON/YAML com a definição completa da Máquina de Estado em ASL (Amazon States Language).
-* **`/lambda-functions`:** Contém o código (opcional) das funções Lambda utilizadas no workflow.
+* `/images`: Contém a captura de tela do diagrama e da execução bem-sucedida.
+* `/state-machine-definition`: Contém o arquivo JSON com a definição completa da Máquina de Estado em ASL.
+* *Outras pastas podem ser adicionadas para o código Lambda, se desejado.*
+
+---
 
 ## 🔗 Recursos e Documentação
 
 * [AWS Step Functions - Documentação Oficial](https://aws.amazon.com/pt/step-functions/)
-* [Amazon States Language (ASL) Specification](https://states-language.net/spec.html)
+* [Especificação da Linguagem Amazon States (ASL)](https://states-language.net/spec.html)
 * [Digital Innovation One - Plataforma de Aprendizagem](https://www.dio.me/)
 
-### **Como Executar Este Projeto:**
-
-1.  Crie as funções Lambda necessárias na sua conta AWS.
-2.  Copie e cole o código ASL da pasta `/state-machine-definition` no console do AWS Step Functions.
-3.  Ajuste os ARNs das funções Lambda no código ASL para corresponderem aos seus recursos.
-4.  Execute a Máquina de Estado e monitore a execução no painel visual!
-
+---
+*Feito com 💜 e depurado no detalhe por: [Seu Nome Completo]*
