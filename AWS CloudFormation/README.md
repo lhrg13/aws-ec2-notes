@@ -1,9 +1,9 @@
-#Implementando Minha Primeira Stack com AWS CloudFormation
+# Implementando Minha Primeira Stack com AWS CloudFormation
 Este repositório documenta o desafio prático de implementar uma Stack básica na AWS utilizando o serviço CloudFormation (Infraestrutura como Código - IaC), conforme proposto pela DIO.
 
 ---
 
-#🚩 Objetivo da Stack
+# 🚩 Objetivo da Stack
 
 ---
 
@@ -16,13 +16,13 @@ Este repositório documenta o desafio prático de implementar uma Stack básica 
  - **Reutilização e Controle:** Os templates são reutilizáveis, garantindo a implantação de ambientes idênticos e consistentes (como desenvolvimento, staging e produção). Ao tratar a infraestrutura como código, é possível versionar esses templates (via Git), aplicando práticas de desenvolvimento de software como revisões de código e rollbacks.
  - **Cobrança:** O serviço CloudFormation em si não tem custo adicional.A cobrança é aplicada apenas pelos recursos da AWS que são provisionados e permanecem em uso (EC2, S3, etc.).
 
-##📒 Conceitos Relacionados
+## 📒 Conceitos Relacionados
 - **Templates (modelos):** Os arquivos JSON/YAML que definem os recursos.
 - **Pilhas (Stacks):** A instância do seu modelo em execução na AWS, todos os recursos definidos no modelo são provisionados dentro da pilha.
 - **Conjuntos de Alterações (Change Sets):** Uma visualização das alterações propostas que o CloudFormation fará nos recursos em execução antes da atualização.
 - **AWS CDK (Cloud Development Kit):** Uma estrutura que permite definir a infraestrutura usando linguagens de programação familiares (Python, TypeScript, etc.), resumindo o resultado em modelos CloudFormation padrão.
 
-##📝 Estrutura Básica do Template (YAML)
+## 📝 Estrutura Básica do Template (YAML)
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Template para criar um S3 Bucket de logs de auditoria
 Resources:
@@ -39,5 +39,5 @@ Outputs:
 
 
 ---
-📂 Arquivos do Repositório
+# 📂 Arquivos do Repositório
 
