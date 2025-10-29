@@ -22,22 +22,6 @@ Este repositório documenta o desafio prático de implementar uma Stack básica 
 - **Conjuntos de Alterações (Change Sets):** Uma visualização das alterações propostas que o CloudFormation fará nos recursos em execução antes da atualização.
 - **AWS CDK (Cloud Development Kit):** Uma estrutura que permite definir a infraestrutura usando linguagens de programação familiares (Python, TypeScript, etc.), resumindo o resultado em modelos CloudFormation padrão.
 
-## 📝 Estrutura Básica do Template (YAML)
-AWSTemplateFormatVersion: '2010-09-09'
-Description: Template para criar um S3 Bucket de logs de auditoria
-Resources:
-  CloudTrailLogBucket:
-    Type: 'AWS::S3::Bucket'
-    Properties:
-      AccessControl: 'Private'
-      DeletionPolicy: 'Retain' # Mantém o bucket se a stack for deletada
-      # ... Outras configurações ...
-Outputs:
-  BucketName:
-    Description: Nome do Bucket S3 criado
-    Value: !Ref CloudTrailLogBucket
-
-
 ---
 # 📂 Arquivos do Repositório
 
