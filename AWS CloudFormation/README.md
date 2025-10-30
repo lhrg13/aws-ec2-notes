@@ -38,7 +38,7 @@ O processo seguiu os seguintes passos dentro do console da AWS:
 5. Exclusão (Cleanup): O ciclo foi finalizado com a exclusão da Stack, que por sua vez, removeu automaticamente o bucket S3, demonstrando o poder do gerenciamento de ciclo de vida da IaC.
 
 ---
-** 📌 Aprendizados
+## 📌 Aprendizados
 - O mais interessante foi ver a automação na prática: ao excluir a Stack, o CloudFormation deletou o bucket S3 sozinho.
 - Aprendi que usar a variável ${AWS::AccountId} no nome do bucket é a forma correta de evitar erros de "nome duplicado.
 - A aba "Saídas" (Outputs) é muito útil, pois mostra o resultado final, como o nome exato do bucket que foi criado.
