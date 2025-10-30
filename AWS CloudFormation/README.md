@@ -1,9 +1,15 @@
-# Implementando Minha Primeira Stack com AWS CloudFormation
+# *Implementando Minha Primeira Stack com AWS CloudFormation*
 Este repositório documenta o desafio prático de implementar uma Stack básica na AWS utilizando o serviço CloudFormation (Infraestrutura como Código - IaC), conforme proposto pela DIO.
 
 ---
 
 ## 🚩 Objetivo da Stack
+Praticar o uso do AWS CloudFormation para criar e gerenciar um Bucket S3.
+O desafio cobriu o ciclo de vida completo da IaC (Infraestrutura como Código):
+* Escrever um template YAML válido.
+* Criar a Stack (deploy).
+*Verificar o bucket criado no S3.
+*Excluir a Stack para limpar os recursos.
 
 ---
 
@@ -23,5 +29,23 @@ Este repositório documenta o desafio prático de implementar uma Stack básica 
 - **AWS CDK (Cloud Development Kit):** Uma estrutura que permite definir a infraestrutura usando linguagens de programação familiares (Python, TypeScript, etc.), resumindo o resultado em modelos CloudFormation padrão.
 
 ---
+## Processo de Implementação e Verificação
+O processo seguiu os seguintes passos dentro do console da AWS:
+1. Criação da Stack: Navegação até o serviço CloudFormation e upload do template.
+2. Status da Criação: Acompanhamento da criação na aba "Eventos" até o status CREATE_COMPLETE.
+3. Verificação (Outputs): Na aba "Saídas" da Stack, foi possível verificar o nome exato do bucket criado.
+4. Verificação (S3): Ao navegar para o console do S3, o bucket estava listado e acessível.
+5. Exclusão (Cleanup): O ciclo foi finalizado com a exclusão da Stack, que por sua vez, removeu automaticamente o bucket S3, demonstrando o poder do gerenciamento de ciclo de vida da IaC.
+
+---
+** 📌 Aprendizados
+- O mais interessante foi ver a automação na prática: ao excluir a Stack, o CloudFormation deletou o bucket S3 sozinho.
+- Aprendi que usar a variável ${AWS::AccountId} no nome do bucket é a forma correta de evitar erros de "nome duplicado.
+- A aba "Saídas" (Outputs) é muito útil, pois mostra o resultado final, como o nome exato do bucket que foi criado.
+
+---
 ## 📂 Arquivos do Repositório
+* README.md: Esta documentação.
+* /template.yaml: O template do CloudFormation utilizado para criar a stack.
+* /images/: Pasta contendo os screenshots do processo.
 
