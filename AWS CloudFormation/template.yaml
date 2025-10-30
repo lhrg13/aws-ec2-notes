@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Esta é a minha primeira stack na AWS. Ela cria um bucket S3.
+
+Resources:
+  BucketDesafio:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Sub 'stack-bucket-dio-${AWS::AccountId}'
+
+Outputs:
+  NomeDoBucket:
+    Description: O nome do bucket S3 que foi criado pela stack
+    Value: !Ref BucketDesafio
