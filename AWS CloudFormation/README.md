@@ -3,11 +3,11 @@ Este repositório documenta o desafio prático de implementar uma Stack básica 
 
 ---
 
-# 🚩 Objetivo da Stack
+## 🚩 Objetivo da Stack
 
 ---
 
-# AWS CloudFormantion
+## AWS CloudFormantion
  O AWS CloudFormation é um serviço essencial da Amazon Web Services (AWS) que permite modelar e provisionar os seus recursos de infraestrutura AWS de forma automatizada e repetível.
  - **Infraestrutura como Código (IaC):** Permite que você defina toda a sua infraestrutura AWS, como instâncias EC2, bancos de dados RDS, redes VPC e etc, em um arquivo de texto (template).
  - **Templates (modelos):** Esses templates são escritos nos formatos JSON ou YAML e funcionam como um projeto para toda a sua configuração de infraestrutura.
@@ -23,5 +23,5 @@ Este repositório documenta o desafio prático de implementar uma Stack básica 
 - **AWS CDK (Cloud Development Kit):** Uma estrutura que permite definir a infraestrutura usando linguagens de programação familiares (Python, TypeScript, etc.), resumindo o resultado em modelos CloudFormation padrão.
 
 ---
-# 📂 Arquivos do Repositório
+## 📂 Arquivos do Repositório
 
