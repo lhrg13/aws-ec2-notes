@@ -8,8 +8,8 @@ Praticar o uso do AWS CloudFormation para criar e gerenciar um Bucket S3.
 O desafio cobriu o ciclo de vida completo da IaC (Infraestrutura como Código):
 * Escrever um template YAML válido.
 * Criar a Stack (deploy).
-*Verificar o bucket criado no S3.
-*Excluir a Stack para limpar os recursos.
+* Verificar o bucket criado no S3.
+* Excluir a Stack para limpar os recursos.
 
 ---
 
