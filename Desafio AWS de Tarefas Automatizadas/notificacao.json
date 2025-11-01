@@ -1,1 +1,9 @@
-
+{
+  "LambdaFunctionConfigurations": [
+	{
+	  "Id": "MoveFileTrigger",
+	  "LambdaFunctionArn": "arn:aws:lambda:us-east-1:000000000000:function:OrganizadorDeArquivos",
+	  "Events": ["s3:ObjectCreated:*"]
+	}
+  ]
+}
