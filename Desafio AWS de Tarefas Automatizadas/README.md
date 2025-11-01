@@ -59,5 +59,5 @@ O processo seguiu os seguintes passos no terminal (PowerShell) com o LocalStack 
 
 * **README.md**: Esta documentação.
 * **/organizador.py**: O código-fonte Python da função Lambda.
-* **/notification.json**: Arquivo de configuração do gatilho do S3.
+* **/notificacao.json**: Arquivo de configuração do gatilho do S3.
 * **/images/**: Capturas de tela do processo (criação, upload, resultado e logs).
