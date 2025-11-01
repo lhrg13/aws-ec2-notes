@@ -1,1 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: |
+  Template CloudFormation para criar uma instância EC2 (t2.micro) 
+  e um Security Group para acesso SSH (porta 22).
 
+Resources:
+  #Grupo de Segurança
+  MeuSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Habilita acesso SSH (porta 22) de qualquer IP
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: "Name"
+          Value: "sg-meu-servidor"
+
+  #EC2 
+  MinhaInstanciaEC2:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-00beae93a2d981137 
+      KeyName: 'minha-chave-aws'
+      SecurityGroupIds:
+        - !Ref MeuSecurityGroup 
+        
+      Tags:
+        - Key: "Name"
+          Value: "meu-servidor-cfn"
+
+Outputs:
+  InstanceID:
+    Description: O ID da instância EC2 criada
+    Value: !Ref MinhaInstanciaEC2
+
+  PublicIP:
+    Description: O Endereço IP Público da instância EC2
+    Value: !GetAtt MinhaInstanciaEC2.PublicIp
+
+  PublicDNS:
+    Description: O nome DNS Público da instância EC2
+    Value: !GetAtt MinhaInstanciaEC2.PublicDnsName
